@@ -22,6 +22,7 @@ class RecipeAPIv2ViewSet(ModelViewSet):
     serializer_class = RecipeSerializer
     pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticatedOrReadOnly]
+    http_method_names = ['get', 'options', 'head', 'patch', 'post', 'delete']
 
     def get_object(self):
         pk = self.kwargs.get('pk', '')
@@ -31,7 +32,7 @@ class RecipeAPIv2ViewSet(ModelViewSet):
             pk=pk,
         )
 
-        self.check_object_permissions(self.reuqest, obj)
+        self.check_object_permissions(self.request, obj)
 
         return obj
 
